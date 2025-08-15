@@ -1,8 +1,8 @@
-import { auth } from '@clerk/nextjs'
-import { redirect } from 'next/navigation'
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { 
   Users, 
   MessageSquare, 
@@ -11,7 +11,8 @@ import {
   TrendingUp,
   Globe,
   Heart,
-  Shield
+  Shield,
+  AlertTriangle
 } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -20,14 +21,40 @@ export const metadata: Metadata = {
 }
 
 export default function AdminDashboard() {
-  const { userId } = auth()
+  // Check if Clerk is properly configured
+  const hasClerk = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && 
+    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY !== 'pk_test_placeholder_key_replace_with_real_key'
 
-  if (!userId) {
-    redirect('/sign-in')
+  if (!hasClerk) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="max-w-md mx-auto text-center">
+          <Card>
+            <CardContent className="p-8">
+              <AlertTriangle className="h-16 w-16 text-ubuntu-orange mx-auto mb-4" />
+              <h1 className="text-2xl font-bold mb-4">Authentication Required</h1>
+              <p className="text-muted-foreground mb-6">
+                This admin dashboard requires Clerk authentication to be configured. 
+                Please add your Clerk API keys to the environment variables.
+              </p>
+              <div className="space-y-3">
+                <Link href="/">
+                  <Button variant="outline" className="w-full">
+                    Return to Home
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button className="w-full bg-ubuntu-orange hover:bg-ubuntu-orange/90">
+                    Contact for Access
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    )
   }
-
-  // TODO: Add role-based access control check
-  // For now, allow any authenticated user to access admin
 
   return (
     <div className="min-h-screen bg-gray-50">

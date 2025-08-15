@@ -11,12 +11,9 @@ import {
   X, 
   Globe,
   ChevronDown,
-  ExternalLink,
   User,
   Settings,
-  LogOut
 } from 'lucide-react'
-import { SignInButton, SignUpButton, UserButton, useUser } from '@clerk/nextjs'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 const navigationItems = [
@@ -61,7 +58,11 @@ export function MainNavigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
-  const { isSignedIn, user } = useUser()
+
+  // Check if Clerk is available
+  const hasClerk = typeof window !== 'undefined' && 
+    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && 
+    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY !== 'pk_test_placeholder_key_replace_with_real_key'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -152,38 +153,28 @@ export function MainNavigation() {
           <div className="hidden lg:flex items-center space-x-4">
             <ThemeToggle />
             
-            {isSignedIn ? (
+            {hasClerk ? (
               <div className="flex items-center space-x-3">
-                {user?.publicMetadata?.role === 'ADMIN' && (
-                  <Link href="/admin">
-                    <Button variant="ghost" size="sm">
-                      <Settings className="h-4 w-4 mr-2" />
-                      Admin
-                    </Button>
-                  </Link>
-                )}
-                <UserButton 
-                  afterSignOutUrl="/"
-                  appearance={{
-                    elements: {
-                      avatarBox: "h-8 w-8"
-                    }
-                  }}
-                />
+                <Link href="/admin">
+                  <Button variant="ghost" size="sm">
+                    <Settings className="h-4 w-4 mr-2" />
+                    Admin
+                  </Button>
+                </Link>
               </div>
             ) : (
               <div className="flex items-center space-x-2">
-                <SignInButton mode="modal">
+                <Link href="/contact">
                   <Button variant="ghost" size="sm">
                     <User className="h-4 w-4 mr-2" />
-                    Sign In
+                    Contact
                   </Button>
-                </SignInButton>
-                <SignUpButton mode="modal">
+                </Link>
+                <Link href="/join">
                   <Button size="sm" className="bg-ubuntu-orange hover:bg-ubuntu-orange/90">
-                    Get Started
+                    Join Us
                   </Button>
-                </SignUpButton>
+                </Link>
               </div>
             )}
           </div>
@@ -254,36 +245,28 @@ export function MainNavigation() {
                 
                 {/* Mobile Auth Buttons */}
                 <div className="pt-4 border-t border-border space-y-3">
-                  {isSignedIn ? (
-                    <div className="space-y-2">
-                      {user?.publicMetadata?.role === 'ADMIN' && (
-                        <Link 
-                          href="/admin"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          <Button variant="outline" className="w-full justify-start">
-                            <Settings className="h-4 w-4 mr-2" />
-                            Admin Dashboard
-                          </Button>
-                        </Link>
-                      )}
+                  {hasClerk ? (
+                    <Link 
+                      href="/admin"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
                       <Button variant="outline" className="w-full justify-start">
-                        <User className="h-4 w-4 mr-2" />
-                        Profile
+                        <Settings className="h-4 w-4 mr-2" />
+                        Admin Dashboard
                       </Button>
-                    </div>
+                    </Link>
                   ) : (
                     <div className="space-y-2">
-                      <SignInButton mode="modal">
+                      <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                         <Button variant="outline" className="w-full">
-                          Sign In
+                          Contact Us
                         </Button>
-                      </SignInButton>
-                      <SignUpButton mode="modal">
+                      </Link>
+                      <Link href="/join" onClick={() => setIsMobileMenuOpen(false)}>
                         <Button className="w-full bg-ubuntu-orange hover:bg-ubuntu-orange/90">
-                          Get Started
+                          Join Us
                         </Button>
-                      </SignUpButton>
+                      </Link>
                     </div>
                   )}
                 </div>

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/card'
-import { Users, Handshake, Lightbulb } from 'lucide-react'
+import { Users, Heart, Lightbulb } from 'lucide-react'
 
 export function PhilosophySection() {
   return (
@@ -40,7 +40,7 @@ export function PhilosophySection() {
                   description: "Technology built with communities, not for them"
                 },
                 {
-                  icon: Handshake,
+                  icon: Heart,
                   title: "Collective Prosperity", 
                   description: "Solutions that benefit everyone, leaving no one behind"
                 },
