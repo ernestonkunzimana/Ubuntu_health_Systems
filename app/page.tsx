@@ -1,7 +1,8 @@
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { ArrowRight, Heart, Shield, Brain, Users, Globe, Zap } from 'lucide-react'
+import { ArrowRight, Heart, Shield, Brain, Users, Globe, Zap, LogIn } from 'lucide-react'
 import { PlatformStats } from '@/components/platform-stats'
 import { FeatureGrid } from '@/components/feature-grid'
 import { ImpactMetrics } from '@/components/impact-metrics'
@@ -9,6 +10,44 @@ import { ImpactMetrics } from '@/components/impact-metrics'
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted">
+      {/* Navigation Bar */}
+      <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-14 items-center">
+          <div className="mr-4 flex">
+            <Link href="/" className="mr-6 flex items-center space-x-2">
+              <Globe className="h-6 w-6 text-ubuntu-orange" />
+              <span className="font-bold">Ubuntu Intelligence</span>
+            </Link>
+          </div>
+          <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+            <nav className="flex items-center space-x-6 text-sm">
+              <Link href="/#platforms" className="transition-colors hover:text-ubuntu-orange">
+                Platforms
+              </Link>
+              <Link href="/#about" className="transition-colors hover:text-ubuntu-orange">
+                About
+              </Link>
+              <Link href="/#impact" className="transition-colors hover:text-ubuntu-orange">
+                Impact
+              </Link>
+            </nav>
+            <div className="flex items-center space-x-2">
+              <Link href="/sign-in">
+                <Button variant="ghost" size="sm">
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="/dashboard">
+                <Button size="sm" className="bg-ubuntu-orange hover:bg-ubuntu-orange/90">
+                  Dashboard
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-16 text-center">
         <div className="max-w-4xl mx-auto">
@@ -23,13 +62,17 @@ export default function HomePage() {
             ethical, AI-powered, and human-centered solutions for Africa's grand challenges.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-ubuntu-orange hover:bg-ubuntu-orange/90">
-              Explore Platforms
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button size="lg" variant="outline">
-              Join Community
-            </Button>
+            <Link href="/dashboard">
+              <Button size="lg" className="bg-ubuntu-orange hover:bg-ubuntu-orange/90">
+                Explore Platforms
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <Link href="/sign-up">
+              <Button size="lg" variant="outline">
+                Join Community
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -38,7 +81,7 @@ export default function HomePage() {
       <PlatformStats />
 
       {/* Core Platforms */}
-      <section className="container mx-auto px-4 py-16">
+      <section id="platforms" className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Ubuntu Intelligence Platforms</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -64,9 +107,11 @@ export default function HomePage() {
                 <li>• Emergency services & GPS alerts</li>
                 <li>• Behavioral change recommendations</li>
               </ul>
-              <Button className="w-full mt-4" variant="outline">
-                Learn More
-              </Button>
+              <Link href="/dashboard/healthtrack">
+                <Button className="w-full mt-4" variant="outline">
+                  Learn More
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
@@ -87,9 +132,11 @@ export default function HomePage() {
                 <li>• Consent ledger management</li>
                 <li>• Document notarization</li>
               </ul>
-              <Button className="w-full mt-4" variant="outline">
-                Learn More
-              </Button>
+              <Link href="/dashboard/safechain">
+                <Button className="w-full mt-4" variant="outline">
+                  Learn More
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
@@ -110,9 +157,11 @@ export default function HomePage() {
                 <li>• Multi-language content</li>
                 <li>• Low-connectivity optimization</li>
               </ul>
-              <Button className="w-full mt-4" variant="outline">
-                Learn More
-              </Button>
+              <Link href="/dashboard/ubuntuxr">
+                <Button className="w-full mt-4" variant="outline">
+                  Learn More
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
@@ -133,9 +182,11 @@ export default function HomePage() {
                 <li>• Bias auditing tools</li>
                 <li>• Federated learning</li>
               </ul>
-              <Button className="w-full mt-4" variant="outline">
-                Learn More
-              </Button>
+              <Link href="/dashboard/ai-engine">
+                <Button className="w-full mt-4" variant="outline">
+                  Learn More
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
@@ -156,9 +207,11 @@ export default function HomePage() {
                 <li>• Community revenue sharing</li>
                 <li>• GDPR/FHIR compliance</li>
               </ul>
-              <Button className="w-full mt-4" variant="outline">
-                Learn More
-              </Button>
+              <Link href="/dashboard/data-commons">
+                <Button className="w-full mt-4" variant="outline">
+                  Learn More
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
@@ -179,19 +232,23 @@ export default function HomePage() {
                 <li>• Gamification & reputation</li>
                 <li>• Multi-channel messaging</li>
               </ul>
-              <Button className="w-full mt-4" variant="outline">
-                Learn More
-              </Button>
+              <Link href="/dashboard/community">
+                <Button className="w-full mt-4" variant="outline">
+                  Learn More
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
       </section>
 
       {/* Impact Metrics */}
-      <ImpactMetrics />
+      <section id="impact">
+        <ImpactMetrics />
+      </section>
 
       {/* Ubuntu Philosophy */}
-      <section className="bg-muted py-16">
+      <section id="about" className="bg-muted py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ubuntu Philosophy</h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
@@ -229,6 +286,20 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-background border-t">
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">
+            <p className="text-muted-foreground">
+              © 2024 Ubuntu Intelligence System. Building Africa's ethical and inclusive digital future.
+            </p>
+            <p className="text-sm text-muted-foreground mt-2">
+              Founded by Ernest Nkunzimana • Contact: nkernest666@gmail.com
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
