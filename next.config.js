@@ -54,13 +54,6 @@ const nextConfig = {
   // Compression and caching
   compress: true,
   poweredByHeader: false,
-  
-  // i18n preparation for multi-language support
-  i18n: {
-    locales: ['en', 'fr', 'sw', 'rw'],
-    defaultLocale: 'en',
-    localeDetection: true,
-  },
 };
 
 module.exports = nextConfig;
