@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { ThemeProvider } from '@/components/theme-provider'
 import { QueryProvider } from '@/components/providers/query-provider'
+import { SkipNavigation } from '@/components/ui/skip-navigation'
 import { Toaster } from 'sonner'
 import './globals.css'
 
@@ -83,6 +84,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#E95420" />
       </head>
       <body className={inter.className}>
+        <SkipNavigation />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
