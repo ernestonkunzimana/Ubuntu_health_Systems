@@ -1,0 +1,304 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User management (synced with Clerk)
+model User {
+  id          String   @id @default(cuid())
+  clerkId     String   @unique
+  email       String   @unique
+  firstName   String?
+  lastName    String?
+  imageUrl    String?
+  role        UserRole @default(USER)
+  isActive    Boolean  @default(true)
+  lastLoginAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  projects       Project[]
+  contactMessages ContactMessage[]
+  blogPosts      BlogPost[]
+  applications   Application[]
+  analytics      UserAnalytics[]
+
+  @@map("users")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+  MODERATOR
+  HEALTH_WORKER
+  RESEARCHER
+  PARTNER
+}
+
+// Core platform projects/solutions
+model Project {
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
+  summary     String
+  content     String?
+  description String?
+  imageUrl    String?
+  status      ProjectStatus @default(UPCOMING)
+  featured    Boolean       @default(false)
+  priority    Int           @default(0)
+  tags        String[]
+  category    String?
+  
+  // Metrics
+  viewCount   Int          @default(0)
+  likeCount   Int          @default(0)
+  
+  // Dates
+  launchDate  DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  
+  // Relations
+  authorId    String
+  author      User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@map("projects")
+}
+
+enum ProjectStatus {
+  ACTIVE
+  UPCOMING
+  COMPLETED
+  PAUSED
+  CANCELLED
+}
+
+// Contact form submissions
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  phone     String?
+  company   String?
+  type      ContactType @default(GENERAL)
+  status    MessageStatus @default(UNREAD)
+  
+  // User relation (optional - for authenticated users)
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("contact_messages")
+}
+
+enum ContactType {
+  GENERAL
+  PARTNERSHIP
+  SUPPORT
+  MEDIA
+  RESEARCH
+  VOLUNTEER
+  FUNDING
+}
+
+enum MessageStatus {
+  UNREAD
+  READ
+  REPLIED
+  ARCHIVED
+}
+
+// Blog/News content management
+model BlogPost {
+  id          String      @id @default(cuid())
+  title       String
+  slug        String      @unique
+  excerpt     String?
+  content     String
+  imageUrl    String?
+  published   Boolean     @default(false)
+  featured    Boolean     @default(false)
+  tags        String[]
+  category    String?
+  
+  // SEO
+  metaTitle   String?
+  metaDescription String?
+  
+  // Metrics
+  viewCount   Int         @default(0)
+  readTime    Int?        // estimated read time in minutes
+  
+  // Publishing
+  publishedAt DateTime?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  // Relations
+  authorId    String
+  author      User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@map("blog_posts")
+}
+
+// Team member applications (Join Us forms)
+model Application {
+  id          String            @id @default(cuid())
+  type        ApplicationType
+  firstName   String
+  lastName    String
+  email       String
+  phone       String?
+  location    String?
+  experience  String?
+  motivation  String
+  resume      String?           // URL to uploaded resume
+  portfolio   String?           // URL to portfolio
+  skills      String[]
+  availability String?
+  status      ApplicationStatus @default(PENDING)
+  
+  // Application specific fields
+  position    String?           // For job applications
+  expertise   String?           // For researcher applications
+  organization String?          // For partner applications
+  funding     String?           // For funding applications
+  
+  // Admin notes
+  adminNotes  String?
+  reviewedBy  String?
+  reviewedAt  DateTime?
+  
+  // User relation (optional)
+  userId      String?
+  user        User?             @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@map("applications")
+}
+
+enum ApplicationType {
+  HEALTH_WORKER
+  RESEARCHER
+  VOLUNTEER
+  PARTNER
+  FUNDING
+  GENERAL
+}
+
+enum ApplicationStatus {
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  WAITLISTED
+}
+
+// Platform analytics and metrics
+model UserAnalytics {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Analytics data
+  event     String   // event name (page_view, click, etc.)
+  page      String?  // page URL
+  metadata  Json?    // additional event data
+  
+  // Session info
+  sessionId String?
+  userAgent String?
+  ipAddress String?
+  country   String?
+  city      String?
+  
+  createdAt DateTime @default(now())
+
+  @@map("user_analytics")
+}
+
+// Impact metrics and statistics
+model ImpactMetric {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  value       Float
+  unit        String?
+  description String?
+  category    String?
+  isPublic    Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("impact_metrics")
+}
+
+// System settings and configuration
+model Setting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String
+  type        SettingType @default(STRING)
+  description String?
+  isPublic    Boolean  @default(false)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("settings")
+}
+
+enum SettingType {
+  STRING
+  NUMBER
+  BOOLEAN
+  JSON
+  URL
+  EMAIL
+}
+
+// Newsletter subscriptions
+model Newsletter {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  firstName   String?
+  lastName    String?
+  isActive    Boolean  @default(true)
+  tags        String[]
+  source      String?  // where they subscribed from
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("newsletter")
+}
+
+// Platform audit logs
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?  // null for system actions
+  action    String   // action performed
+  resource  String   // resource affected
+  details   Json?    // additional details
+  ipAddress String?
+  userAgent String?
+  
+  createdAt DateTime @default(now())
+
+  @@map("audit_logs")
+}
