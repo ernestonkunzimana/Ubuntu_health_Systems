@@ -1,0 +1,53 @@
+{
+  "navigation": {
+    "home": "Ahabanza",
+    "about": "Aho turimo",
+    "solutions": "Ibisubizo",
+    "contact": "Twandikire",
+    "join": "Dutabere",
+    "news": "Amakuru",
+    "team": "Itsinda",
+    "impact": "Ingaruka",
+    "admin": "Ubuyobozi",
+    "signin": "Injira",
+    "signup": "Iyandikishe"
+  },
+  "common": {
+    "loading": "Birapakoze...",
+    "error": "Ikosa",
+    "success": "Gutsinda",
+    "submit": "Kohereza",
+    "cancel": "Hagarika",
+    "save": "Bika",
+    "edit": "Hindura",
+    "delete": "Siba",
+    "back": "Subira",
+    "next": "Ikurikira",
+    "previous": "Ibanziriza",
+    "close": "Funga",
+    "open": "Fungura",
+    "learn_more": "Menya Byinshi",
+    "get_started": "Tangira",
+    "read_more": "Soma Byinshi"
+  },
+  "aria": {
+    "main_navigation": "Ubuyobozi bukuru",
+    "mobile_menu": "Menyu y'igikoresho cyoroshye",
+    "skip_to_content": "Simbuka ujye ku bikoranabuhanga",
+    "toggle_theme": "Hindura ibara ry'umwijima/urumuri",
+    "open_menu": "Fungura menyu y'ubuyobozi",
+    "close_menu": "Funga menyu y'ubuyobozi",
+    "social_links": "Ihuza ry'imbuga nkoranyambaga",
+    "footer_navigation": "Ubuyobozi bw'iherezo"
+  },
+  "philosophy": {
+    "ubuntu": "Ubuntu",
+    "ubuntu_meaning": "Ndi kubera ko turi",
+    "ubuntu_description": "Ubuntu ni filozofiya y'Abanyafurika ishimangira ubumwe bw'abantu. Ni urufatiro rw'uburyo bwacu bwo gukoresha ikoranabuhanga no kubaka abaturage."
+  },
+  "footer": {
+    "tagline": "Kubaka ejo hazaza h'ikoranabuhanga ry'imyitwarire myiza kandi ryakira abantu bose muri Afurika",
+    "copyright": "© 2024 Ubuntu Intelligence. Uburenganzira bwose burarinzwe.",
+    "powered_by": "Butera ku Filozofiya ya Ubuntu"
+  }
+}

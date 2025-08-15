@@ -1,0 +1,53 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "solutions": "Solutions",
+    "contact": "Contact",
+    "join": "Nous Rejoindre",
+    "news": "Actualités",
+    "team": "Équipe",
+    "impact": "Impact",
+    "admin": "Administration",
+    "signin": "Se Connecter",
+    "signup": "S'Inscrire"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "save": "Sauvegarder",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "close": "Fermer",
+    "open": "Ouvrir",
+    "learn_more": "En Savoir Plus",
+    "get_started": "Commencer",
+    "read_more": "Lire Plus"
+  },
+  "aria": {
+    "main_navigation": "Navigation principale",
+    "mobile_menu": "Menu mobile",
+    "skip_to_content": "Aller au contenu principal",
+    "toggle_theme": "Basculer le thème sombre/clair",
+    "open_menu": "Ouvrir le menu de navigation",
+    "close_menu": "Fermer le menu de navigation",
+    "social_links": "Liens des réseaux sociaux",
+    "footer_navigation": "Navigation du pied de page"
+  },
+  "philosophy": {
+    "ubuntu": "Ubuntu",
+    "ubuntu_meaning": "Je suis parce que nous sommes",
+    "ubuntu_description": "Ubuntu est une philosophie africaine qui met l'accent sur l'interconnexion de l'humanité. Elle constitue le fondement de notre approche de la technologie et de la construction communautaire."
+  },
+  "footer": {
+    "tagline": "Construire l'avenir numérique éthique et inclusif de l'Afrique",
+    "copyright": "© 2024 Ubuntu Intelligence. Tous droits réservés.",
+    "powered_by": "Alimenté par la Philosophie Ubuntu"
+  }
+}

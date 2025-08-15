@@ -1,0 +1,53 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "solutions": "Solutions",
+    "contact": "Contact",
+    "join": "Join Us",
+    "news": "News",
+    "team": "Team",
+    "impact": "Impact",
+    "admin": "Admin",
+    "signin": "Sign In",
+    "signup": "Sign Up"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "open": "Open",
+    "learn_more": "Learn More",
+    "get_started": "Get Started",
+    "read_more": "Read More"
+  },
+  "aria": {
+    "main_navigation": "Main navigation",
+    "mobile_menu": "Mobile menu",
+    "skip_to_content": "Skip to main content",
+    "toggle_theme": "Toggle dark/light theme",
+    "open_menu": "Open navigation menu",
+    "close_menu": "Close navigation menu",
+    "social_links": "Social media links",
+    "footer_navigation": "Footer navigation"
+  },
+  "philosophy": {
+    "ubuntu": "Ubuntu",
+    "ubuntu_meaning": "I am because we are",
+    "ubuntu_description": "Ubuntu is an African philosophy emphasizing the interconnectedness of humanity. It forms the foundation of our approach to technology and community building."
+  },
+  "footer": {
+    "tagline": "Building Africa's ethical and inclusive digital future",
+    "copyright": "© 2024 Ubuntu Intelligence. All rights reserved.",
+    "powered_by": "Powered by Ubuntu Philosophy"
+  }
+}

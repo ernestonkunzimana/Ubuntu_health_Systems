@@ -1,0 +1,53 @@
+{
+  "navigation": {
+    "home": "Nyumbani",
+    "about": "Kuhusu",
+    "solutions": "Suluhisho",
+    "contact": "Wasiliana",
+    "join": "Jiunge Nasi",
+    "news": "Habari",
+    "team": "Timu",
+    "impact": "Athari",
+    "admin": "Utawala",
+    "signin": "Ingia",
+    "signup": "Jisajili"
+  },
+  "common": {
+    "loading": "Inapakia...",
+    "error": "Hitilafu",
+    "success": "Mafanikio",
+    "submit": "Wasilisha",
+    "cancel": "Ghairi",
+    "save": "Hifadhi",
+    "edit": "Hariri",
+    "delete": "Futa",
+    "back": "Rudi",
+    "next": "Ifuatayo",
+    "previous": "Iliyotangulia",
+    "close": "Funga",
+    "open": "Fungua",
+    "learn_more": "Jifunze Zaidi",
+    "get_started": "Anza",
+    "read_more": "Soma Zaidi"
+  },
+  "aria": {
+    "main_navigation": "Urambazaji mkuu",
+    "mobile_menu": "Menyu ya rununu",
+    "skip_to_content": "Ruka hadi maudhui makuu",
+    "toggle_theme": "Badilisha mandhari ya giza/mwanga",
+    "open_menu": "Fungua menyu ya urambazaji",
+    "close_menu": "Funga menyu ya urambazaji",
+    "social_links": "Viungo vya mitandao ya kijamii",
+    "footer_navigation": "Urambazaji wa chini"
+  },
+  "philosophy": {
+    "ubuntu": "Ubuntu",
+    "ubuntu_meaning": "Mimi ni kwa sababu sisi tupo",
+    "ubuntu_description": "Ubuntu ni falsafa ya Kiafrika inayosisitiza uhusiano wa binadamu. Ni msingi wa mbinu yetu ya teknolojia na ujenzi wa jamii."
+  },
+  "footer": {
+    "tagline": "Kujenga mustakabali wa kidijitali wa kimaadili na wa pamoja wa Afrika",
+    "copyright": "© 2024 Ubuntu Intelligence. Haki zote zimehifadhiwa.",
+    "powered_by": "Inaendeshwa na Falsafa ya Ubuntu"
+  }
+}
