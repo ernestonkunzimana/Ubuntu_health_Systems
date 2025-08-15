@@ -1,8 +1,9 @@
 "use client"
 
-import { useRouter } from 'next/router'
+import { useRouter, usePathname } from 'next/navigation'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select'
 import { Globe } from 'lucide-react'
+import { useState } from 'react'
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
@@ -13,16 +14,21 @@ const languages = [
 
 export function LanguageSwitcher() {
   const router = useRouter()
-  const { locale, asPath } = router
+  const pathname = usePathname()
+  const [currentLocale, setCurrentLocale] = useState('en')
 
   const handleLanguageChange = (newLocale: string) => {
-    router.push(asPath, asPath, { locale: newLocale })
+    setCurrentLocale(newLocale)
+    // For App Router, we would need to implement i18n differently
+    // For now, just store preference in localStorage
+    localStorage.setItem('preferred-language', newLocale)
+    // In a full implementation, this would trigger a language change
   }
 
-  const currentLanguage = languages.find(lang => lang.code === locale) || languages[0]
+  const currentLanguage = languages.find(lang => lang.code === currentLocale) || languages[0]
 
   return (
-    <Select value={locale} onValueChange={handleLanguageChange}>
+    <Select value={currentLocale} onValueChange={handleLanguageChange}>
       <SelectTrigger 
         className="w-auto min-w-[120px] h-10 border-0 focus:ring-0"
         aria-label="Select language"
